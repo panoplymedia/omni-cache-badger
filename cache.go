@@ -110,12 +110,12 @@ func (c *Conn) Read(k []byte) ([]byte, error) {
 }
 
 // Stats provides stats about the Badger database
-func (c *Conn) Stats() map[string]interface{} {
+func (c *Conn) Stats() (map[string]interface{}, error) {
 	lsm, vlog := c.db.Size()
 	return Stats{
 		"LSMSize":  lsm,
 		"VLogSize": vlog,
-	}
+	}, nil
 }
 
 // Backup dumps a protobuf-encoded list of all entries in the database into the

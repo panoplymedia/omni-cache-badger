@@ -146,6 +146,7 @@ func TestStats(t *testing.T) {
 	assert.Nil(t, err)
 	defer conn.Close()
 
-	s := conn.Stats()
+	s, err := conn.Stats()
+	assert.Nil(t, err)
 	assert.Equal(t, map[string]interface{}{"LSMSize": int64(0), "VLogSize": int64(0)}, s)
 }
