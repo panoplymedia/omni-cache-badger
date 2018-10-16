@@ -31,10 +31,10 @@ func TestNewCache(t *testing.T) {
 	assert.Equal(t, &DefaultGCOptions, c.gcOpts)
 }
 
-func TestSet(t *testing.T) {
+func TestWrite(t *testing.T) {
 	c, err := NewCache(time.Second, nil, nil)
 	assert.Nil(t, err)
-	conn, err := c.Open("test-cache-set")
+	conn, err := c.Open("test-cache-write")
 	assert.Nil(t, err)
 	defer conn.Close()
 
@@ -56,10 +56,10 @@ func TestSet(t *testing.T) {
 	assert.Errorf(t, err, "Key not found")
 }
 
-func TestSetWithTTL(t *testing.T) {
+func TestWriteTTL(t *testing.T) {
 	c, err := NewCache(time.Second, nil, nil)
 	assert.Nil(t, err)
-	conn, err := c.Open("test-cache-set-ttl")
+	conn, err := c.Open("test-cache-write-ttl")
 	assert.Nil(t, err)
 	defer conn.Close()
 
@@ -81,10 +81,10 @@ func TestSetWithTTL(t *testing.T) {
 	assert.Errorf(t, err, "Key not found")
 }
 
-func TestGet(t *testing.T) {
+func TestRead(t *testing.T) {
 	c, err := NewCache(time.Second, nil, nil)
 	assert.Nil(t, err)
-	conn, err := c.Open("test-cache-get")
+	conn, err := c.Open("test-cache-read")
 	assert.Nil(t, err)
 	defer conn.Close()
 
@@ -92,7 +92,7 @@ func TestGet(t *testing.T) {
 	key := []byte("my-key")
 	// cache miss
 	b, err := conn.Read(key)
-	assert.Errorf(t, err, "Key not fou")
+	assert.Errorf(t, err, "Key not found")
 
 	// cache hit
 	v := []byte{1, 2}
