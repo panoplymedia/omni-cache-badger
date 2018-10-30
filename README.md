@@ -1,6 +1,6 @@
-# Local Cache Badger
+# OmniCache BadgerDB
 
-A [local cache](https://github.com/panoplymedia/local-cache) based on [Badger](https://github.com/dgraph-io/badger).
+A [BadgerDB](https://github.com/dgraph-io/badger) persistence layer for [omni-cache](https://github.com/panoplymedia/omni-cache).
 
 ### Sample Usage
 
